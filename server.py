@@ -7,25 +7,72 @@ app = Flask(__name__)
 @app.route("/switch-app", methods=['GET', 'POST'])
 def switch():
     mode = request.form['mode']
-    panel_state.set_mode(mode)
-    displaySwitch.draw(panel_state)
+    if mode == "mbta":
+        panel_state.set_mode(mode)
+    elif mode == "baseball":
+        panel_state.set_mode(mode)
+        update_game_state(request)
+    else:
+        return "Invalid mode"
+    
+    displaySwitch.draw(panel_state, True)
     return "Current mode: " + panel_state.mode
 
 @app.route("/baseball", methods=['POST'])
 def baseball_state():
+    update_game_state(request)
+    if panel_state.mode == "baseball":
+        displaySwitch.draw(panel_state)
+
     return "Set baseball"
+
+def update_game_state(request):
+    game_state = models.GameState(
+    request.form['score1'],
+    request.form['score2'],
+    request.form['batting'],
+    request.form['base1'],
+    request.form['base2'],
+    request.form['base3'],
+    request.form['inning'],
+    request.form['strikes'],
+    request.form['outs'])
+
+    panel_state.set_game_state(game_state)
 
 @app.route("/mbta", methods=['POST'])
 def mbta_state():
+    print "Yep"
+    mbta_state = models.MbtaState(
+    request.form['time_1'],
+    request.form['time_2'],
+    request.form['color_1'],
+    request.form['color_2'])
+
+    "Made mbtaState"
+    panel_state.set_mbta_state(mbta_state)
+    if panel_state.mode == "mbta":
+        displaySwitch.draw(panel_state)
+
     return "Set mbta"
 
 @app.route("/weather", methods=['POST'])
 def weather_state():
+    color = (int(request.form['r']), int(request.form['g']), int(request.form['b']))
+    weather_state = models.WeatherState(
+    request.form['temp'],
+    color,
+    request.form['jpeg'])
+
+    panel_state.set_weather_state(weather_state)
+    if panel_state.mode == "mbta":
+        displaySwitch.draw(panel_state)
     return "Set weather"
 
 def main():
     global panel_state
     panel_state = models.PanelState()
+    displaySwitch.draw(panel_state)
     app.run(host='0.0.0.0', port=6001)
 
 main()

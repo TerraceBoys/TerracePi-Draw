@@ -58,6 +58,7 @@ def train_display(mbta_state):
 def weather_display(weather_state):
     global draw
     if weather_state.temp:
+        print weather_state.color
         draw.text((46, 3), weather_state.temp + u"\u00b0", font=weather_font, fill=weather_state.color)
     else:
         draw.text((44, 3), "N\A", font=weather_font, fill="red")
