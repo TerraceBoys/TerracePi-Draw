@@ -44,7 +44,7 @@ def main(matrix, person_picker_state):
     global personList
     choosePerson = False
     cycles = 0
-    chosenPerson = person_picker_state.chosen_index
+    chosenIndex = int(person_picker_state.chosen_index)
     personList = buildPersonList(person_picker_state.people)
     while True:
         image = Image.new("RGB", (64, 32))
