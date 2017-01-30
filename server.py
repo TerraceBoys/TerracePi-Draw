@@ -12,6 +12,8 @@ def switch():
     elif mode == "baseball":
         panel_state.set_mode(mode)
         update_game_state(request)
+    elif mode == "person_picker":
+        panel_state.set_mode(mode)
     else:
         return "Invalid mode"
     
@@ -43,13 +45,15 @@ def update_game_state(request):
 @app.route("/mbta", methods=['POST'])
 def mbta_state():
     print "Yep"
+    print request.form
+
     mbta_state = models.MbtaState(
     request.form['time_1'],
     request.form['time_2'],
     request.form['color_1'],
     request.form['color_2'])
 
-    "Made mbtaState"
+    print "Made mbtaState"
     panel_state.set_mbta_state(mbta_state)
     if panel_state.mode == "mbta":
         displaySwitch.draw(panel_state)
@@ -68,6 +72,16 @@ def weather_state():
     if panel_state.mode == "mbta":
         displaySwitch.draw(panel_state)
     return "Set weather"
+
+@app.route("/person-picker", methods=['POST'])
+def person_picker_state():
+    print request.form.getlist('people')
+    person_picker_state = models.PersonPickerState(
+    ['Branden', 'Allison', 'Brian', 'Allie', 'Ray', 'JJ', 'Mark'],
+    request.form['chosen_index'])
+    panel_state.set_person_picker_state(person_picker_state)
+    displaySwitch.draw(panel_state)    
+    return 'Set Person Picker'
 
 def main():
     global panel_state

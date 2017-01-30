@@ -3,6 +3,7 @@ class PanelState:
         self.mbta_state = MbtaState()
         self.weather_state = WeatherState()
         self.game_state = GameState()
+        self.person_picker_state = PersonPickerState()
         self.mode = mode
 
     def set_mode(self, mode):
@@ -16,6 +17,9 @@ class PanelState:
 
     def set_game_state(self, game_state):
         self.game_state = game_state
+
+    def set_person_picker_state(self, person_picker_state):
+        self.person_picker_state = person_picker_state
 
 class MbtaState:
     def __init__(self, time_1=None, time_2=None, color_1=None, color_2=None):
@@ -41,3 +45,8 @@ class GameState:
         self.inning = inning
         self.strikes = strikes
         self.outs = outs
+
+class PersonPickerState:
+    def __init__(self, people=None, chosen_index=0):
+        self.people = people
+        self.chosen_index = chosen_index 
