@@ -1,7 +1,7 @@
 import models
-import mbtaDisplay
-import baseballDisplay
-import personPickerDisplay
+from draw import mbtaDisplay
+from draw import baseballDisplay
+from draw import personPickerDisplay
 from rgbmatrix import Adafruit_RGBmatrix
 
 matrix = Adafruit_RGBmatrix(32, 2)
