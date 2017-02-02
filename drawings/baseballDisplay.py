@@ -19,7 +19,7 @@ def main(matrix, game_state):
     draw = ImageDraw.Draw(image)  
     drawRedScore(str(game_state.score1))
     drawBlueScore(str(game_state.score2))
-    drawBatting(int(game_state.batting))
+    #drawBatting(int(game_state.batting))
     drawDiamond()
     drawBases(int(game_state.base1), int(game_state.base2), int(game_state.base3))
     drawInning(str(game_state.inning), int(game_state.batting))
@@ -51,7 +51,7 @@ def drawRedScore(score1):
 def drawBlueScore(score2):
     global draw
     BORDER = "blue"
-    SCORE_COLOR = "yellow"
+    SCORE_COLOR = "white"
     draw.line([0, 16, 17, 16], fill=BORDER)
     draw.line([17, 17, 17, 31], fill=BORDER)
     draw.line([16, 31, 0, 31], fill=BORDER)
@@ -63,7 +63,8 @@ def drawBatting(batting):
     team1 = [18, 0, 18, 15]
     team2 = [18, 16, 18, 31]
     if not batting:
-        draw.line(team1, fill="yellow")
+         draw.line(team1, fill="yellow")
+         draw.line([1, 1, 16, 1], fill='white')
     else:
         draw.line(team2, fill="yellow")
 
@@ -80,9 +81,9 @@ def drawBases(base1, base2, base3):
     NO_RUNNER = "grey"
     RUNNER = "yellow"
     draw.rectangle([35, 28, 36, 29], fill=NO_RUNNER) # home
-    draw.rectangle([48, 15, 49, 16], fill=RUNNER if base1 else NO_RUNNER) # 1st
-    draw.rectangle([35, 2, 36, 3], fill=RUNNER if base2 else NO_RUNNER) # 2nd
-    draw.rectangle([22, 15, 23, 16], fill=RUNNER if base3 else NO_RUNNER) # 3rd    
+    draw.rectangle([47, 14, 50, 17], fill=RUNNER if base1 else NO_RUNNER) # 1st
+    draw.rectangle([34, 1, 37, 4], fill=RUNNER if base2 else NO_RUNNER) # 2nd
+    draw.rectangle([21, 14, 24, 17], fill=RUNNER if base3 else NO_RUNNER) # 3rd       
 
 def drawInning(inning, batting):
     global draw
