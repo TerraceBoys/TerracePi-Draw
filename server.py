@@ -75,10 +75,9 @@ def weather_state():
 
 @app.route("/person-picker", methods=['POST'])
 def person_picker_state():
-    print request.form.getlist('people')
-    person_picker_state = models.PersonPickerState(
-    ['Branden', 'Allison', 'Brian', 'Allie', 'Ray', 'JJ', 'Mark'],
-    request.form['chosen_index'])
+    people = request.form.getlist('people')
+    print people
+    person_picker_state = models.PersonPickerState(people, request.form['chosen_index'])
     panel_state.set_person_picker_state(person_picker_state)
     displaySwitch.draw(panel_state)    
     return 'Set Person Picker'
