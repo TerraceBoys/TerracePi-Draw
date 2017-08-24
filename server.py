@@ -1,6 +1,7 @@
 from flask import Flask, request
 import models
 import displaySwitch
+import time
 
 app = Flask(__name__)
 
@@ -44,7 +45,6 @@ def update_game_state(request):
 
 @app.route("/mbta", methods=['POST'])
 def mbta_state():
-    print "Yep"
     print request.form
 
     mbta_state = models.MbtaState(
@@ -86,6 +86,7 @@ def main():
     global panel_state
     panel_state = models.PanelState()
     displaySwitch.draw(panel_state)
+    time.sleep(10)
     app.run(host='0.0.0.0', port=6001)
 
 main()
