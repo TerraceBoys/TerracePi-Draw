@@ -10,8 +10,8 @@ from PIL import ImageSequence
 
 import models
 
-text_font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSans.ttf", 8)
-NUM_FONT = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSans.ttf", 11)
+text_font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 8)
+NUM_FONT = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 11)
 
 def main(matrix, game_state):
     global draw

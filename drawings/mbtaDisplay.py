@@ -9,10 +9,10 @@ import ImageFont
 
 import models
 
-font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSans.ttf", 8)
+font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 8)
 message = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSerif.ttf", 22)
-train = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSans.ttf", 11)
-weather_font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSans.ttf", 10)
+train = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 11)
+weather_font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 10)
 
 def main(matrix, mbta_state, weather_state):
     global draw
