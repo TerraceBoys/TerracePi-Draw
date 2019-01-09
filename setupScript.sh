@@ -17,6 +17,14 @@ if [ ! -f rgbmatrix.so ]; then
    rm -rf rpi-rgb-led-matrix-master
 fi
 
+if [ ! -f DroidSans.ttf ]; then
+   wget https://www.fontsquirrel.com/fonts/download/droid-sans.zip
+   unzip droid-sans.zip
+   rm droid-sans.zip
+   rm Apache\ License.txt
+   rm DroidSans-Bold.ttf
+fi
+
 chmod +x ~/Desktop/TerracePi-Draw/refresh.sh
 croncmd="~/Desktop/TerracePi-Draw/refresh.sh &"
 cronjob="@reboot $croncmd"

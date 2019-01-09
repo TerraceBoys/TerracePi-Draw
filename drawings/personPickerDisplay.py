@@ -9,7 +9,7 @@ from PIL import ImageFont
 
 import models
 
-text_font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 12)
+text_font = ImageFont.truetype("DroidSans.ttf", 12)
 
 class PersonDraw:
     def __init__(self, name, yPos, isVisible):

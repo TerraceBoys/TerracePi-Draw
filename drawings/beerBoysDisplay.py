@@ -9,7 +9,7 @@ from PIL import ImageFont
 
 import models
 
-text_font = ImageFont.truetype("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", 9)
+text_font = ImageFont.truetype("DroidSans.ttf", 9)
 
 def main(matrix, beer_boys_state):
     image = Image.new("RGB", (64, 32))
